@@ -11,44 +11,60 @@ from datetime import datetime,timedelta
 import time
 from utils import get_begin_day
 from configs import chromedriver_path
+
+
 class Voyage:
-    driver = None
-    action = None
+
     def __init__(self):
         self.driver = webdriver.Chrome(executable_path=chromedriver_path)
         self.driver.get("https://testpartner.vtbins.ru/b2c/voyage/test-main.html")
         self.driver.switch_to.frame("RESOLUTE_INSURANCE")
         self.action=webdriver.common.action_chains.ActionChains(self.driver)
         self.fill_frame()
-    def fill_frame(self):
+
+    def insured_birthdates(self):
         driver=self.driver
-        action=self.action
-        body=driver.find_element_by_tag_name("body")
-        WebDriverWait(driver,10).until(EC.presence_of_element_located((By.CSS_SELECTOR,"div[_insured=\"1\"]>label:first-child")))
-        insured1=driver.find_element_by_css_selector("div[_insured=\"1\"]>label:first-child")
+        body = driver.find_element_by_tag_name("body")
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "div[_insured=\"1\"]>label:first-child")))
+        insured1 = driver.find_element_by_css_selector("div[_insured=\"1\"]>label:first-child")
         insured1.click()
-        insured1_dob=driver.find_element_by_css_selector("div[_insured=\"1\"]>label:nth-child(2)>input")
+        insured1_dob = driver.find_element_by_css_selector("div[_insured=\"1\"]>label:nth-child(2)>input")
         insured1_dob.click()
         insured1_dob.send_keys("10021990")
         body.click()
-        WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.CSS_SELECTOR,"div#tripType>label:nth-child(2)")))
-        trip_type=driver.find_element_by_css_selector("label[code=\"single\"]")
+
+    def trip_type(self):
+        driver=self.driver
+        WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "div#tripType>label:nth-child(2)")))
+        trip_type = driver.find_element_by_css_selector("label[code=\"single\"]")
         trip_type.click()
-        WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.ID,"countries")))
+
+    def country_select(self):
+        driver=self.driver
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "countries")))
         time.sleep(1)
-        choose_country=driver.find_element_by_id("countries")
+        choose_country = driver.find_element_by_id("countries")
         choose_country.click()
-        WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.CSS_SELECTOR,"div[value *= \"Шенген\"]")))
-        schengen=driver.find_element_by_css_selector("div[value *= \"Шенген\"]")
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "div[value *= \"Шенген\"]")))
+        schengen = driver.find_element_by_css_selector("div[value *= \"Шенген\"]")
         schengen.click()
+
+    def conditions(self):
+        driver=self.driver
         WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.CSS_SELECTOR,"div#meSS>label[code=\"50000\"]")))
         summa50000=driver.find_element_by_css_selector("div#meSS>label[code=\"50000\"]")
         summa50000.click()
         WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.NAME,"departures")))
         time.sleep(1)
+
+    def trip_dates(self,days):
+        action=self.action
+        driver=self.driver
         begin_date=driver.find_element_by_name("departures")
         begin_date.click()
-        begin_date.send_keys(get_begin_day(6))
+        begin_date.send_keys(get_begin_day(days))
         action.move_by_offset(100,100).click().perform()
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "arrivals")))
         end_date=driver.find_element_by_name("arrivals")
@@ -56,15 +72,25 @@ class Voyage:
         end_date.send_keys(get_begin_day(20))
         action.move_by_offset(100,100).click().perform()
         time.sleep(1)
-        not_needed=driver.find_element_by_css_selector("label[code=\"no\"][for=\"15\"]")
+
+    def buy(self):
+        driver = self.driver
+        not_needed = driver.find_element_by_css_selector("label[code=\"no\"][for=\"15\"]")
         not_needed.click()
-        WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.ID,"buy_econom")))
-        buy_econom=driver.find_element_by_id("buy_econom")
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "buy_econom")))
+        buy_econom = driver.find_element_by_id("buy_econom")
         buy_econom.click()
-        WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.ID,"addComplite")))
-        continue_without=driver.find_element_by_id("addComplite")
+
+    def continue_without(self):
+        driver = self.driver
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "addComplite")))
+        continue_without = driver.find_element_by_id("addComplite")
         driver.execute_script("arguments[0].click();", continue_without)
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "div[name=\"Insurer_1\"] input[name=\"lastName\"]")))
+        WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "div[name=\"Insurer_1\"] input[name=\"lastName\"]")))
+
+    def insured_info(self):
+        driver=self.driver
         ins1_surname=driver.find_element_by_css_selector("div[name=\"Insurer_1\"] input[name=\"lastName\"]")
         ins1_surname.click()
         ins1_surname.send_keys("Петров")
@@ -91,17 +117,38 @@ class Voyage:
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, ("div.sectionInsurersButton>button"))))
         continue_button=driver.find_element_by_css_selector(("div.sectionInsurersButton>button"))
         continue_button.click()
-        WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.NAME,"phone")))
-        phone=driver.find_element_by_name("phone")
+
+    def insurer_info(self):
+        driver = self.driver
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "phone")))
+        phone = driver.find_element_by_name("phone")
         phone.send_keys("1112223344")
-        email1=driver.find_element_by_name("email1")
+        email1 = driver.find_element_by_name("email1")
         email1.send_keys("knikitin@avinfors.ru")
         email2 = driver.find_element_by_name("email2")
         email2.send_keys("knikitin@avinfors.ru")
         continue_button1 = driver.find_element_by_css_selector(("div.sectionConfirmButton>button"))
         continue_button1.click()
-        WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.CSS_SELECTOR,"label.checkbox.final>span.checkbox-icon")))
-        agree=driver.find_element_by_css_selector("label.checkbox.final>span.checkbox-icon")
+
+    def agree(self):
+        driver = self.driver
+        WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, "label.checkbox.final>span.checkbox-icon")))
+        agree = driver.find_element_by_css_selector("label.checkbox.final>span.checkbox-icon")
         agree.click()
-voyage=Voyage()
+
+    def fill_frame(self):
+        self.insured_birthdates()
+        self.trip_type()
+        self.country_select()
+        self.conditions()
+        self.trip_dates(6)
+        self.buy()
+        self.continue_without()
+        self.insured_info()
+        self.insurer_info()
+        self.agree()
+
+
+voyage = Voyage()
 

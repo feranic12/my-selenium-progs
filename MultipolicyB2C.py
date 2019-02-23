@@ -11,17 +11,19 @@ import time
 from utils import get_begin_day
 from configs import chromedriver_path
 class MultipolicyB2C():
-    driver = None
     def __init__(self):
         self.driver=webdriver.Chrome(executable_path=chromedriver_path)
         self.driver.get("https://testpartner.vtbins.ru/b2c/multipolicy/test-main.html")
         self.driver.switch_to.frame(0)
         self.fill_frame()
 
-    def fill_frame(self):
+    def policy_info(self):
         driver=self.driver
-        driver.find_element_by_name("number1").send_keys("33500")
+        driver.find_element_by_name("number1").send_keys("33522")
         driver.find_element_by_name("activecode").send_keys("123456")
+
+    def insurer(self):
+        driver=self.driver
         driver.find_element_by_name("lastName").send_keys("Петров")
         driver.find_element_by_name("firstName").send_keys("Пётр")
         driver.find_element_by_name("middleName").send_keys("Петрович")
@@ -44,4 +46,9 @@ class MultipolicyB2C():
         driver.find_element_by_name("email1").send_keys("knikitin@avinfors.ru")
         driver.find_element_by_name("email2").send_keys("knikitin@avinfors.ru")
         driver.find_element_by_css_selector("div[value*=Мужской]").click()
+
+    def fill_frame(self):
+        self.policy_info()
+        self.insurer()
+
 multipolicy_b2c=MultipolicyB2C()
