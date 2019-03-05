@@ -1,4 +1,6 @@
 from datetime import datetime,timedelta
+
+
 def get_begin_day(delta_days):
     today = datetime.today()
     begin_day = today + timedelta(delta_days)

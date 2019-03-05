@@ -23,7 +23,7 @@ class Voyage:
         self.fill_frame()
 
     def insured_birthdates(self):
-        driver=self.driver
+        driver = self.driver
         body = driver.find_element_by_tag_name("body")
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "div[_insured=\"1\"]>label:first-child")))
@@ -35,14 +35,14 @@ class Voyage:
         body.click()
 
     def trip_type(self):
-        driver=self.driver
+        driver = self.driver
         WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, "div#tripType>label:nth-child(2)")))
         trip_type = driver.find_element_by_css_selector("label[code=\"single\"]")
         trip_type.click()
 
     def country_select(self):
-        driver=self.driver
+        driver = self.driver
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.ID, "countries")))
         time.sleep(1)
         choose_country = driver.find_element_by_id("countries")
@@ -52,17 +52,17 @@ class Voyage:
         schengen.click()
 
     def conditions(self):
-        driver=self.driver
+        driver = self.driver
         WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.CSS_SELECTOR,"div#meSS>label[code=\"50000\"]")))
-        summa50000=driver.find_element_by_css_selector("div#meSS>label[code=\"50000\"]")
+        summa50000 = driver.find_element_by_css_selector("div#meSS>label[code=\"50000\"]")
         summa50000.click()
         WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.NAME,"departures")))
         time.sleep(1)
 
     def trip_dates(self,days):
-        action=self.action
-        driver=self.driver
-        begin_date=driver.find_element_by_name("departures")
+        action = self.action
+        driver = self.driver
+        begin_date = driver.find_element_by_name("departures")
         begin_date.click()
         begin_date.send_keys(get_begin_day(days))
         action.move_by_offset(100,100).click().perform()
@@ -90,8 +90,8 @@ class Voyage:
             EC.element_to_be_clickable((By.CSS_SELECTOR, "div[name=\"Insurer_1\"] input[name=\"lastName\"]")))
 
     def insured_info(self):
-        driver=self.driver
-        ins1_surname=driver.find_element_by_css_selector("div[name=\"Insurer_1\"] input[name=\"lastName\"]")
+        driver = self.driver
+        ins1_surname = driver.find_element_by_css_selector("div[name=\"Insurer_1\"] input[name=\"lastName\"]")
         ins1_surname.click()
         ins1_surname.send_keys("Петров")
         ins1_firstname = driver.find_element_by_css_selector("div[name=\"Insurer_1\"] input[name=\"firstName\"]")
@@ -100,7 +100,7 @@ class Voyage:
         ins1_middlename = driver.find_element_by_css_selector("div[name=\"Insurer_1\"] input[name=\"middleName\"]")
         ins1_middlename.click()
         ins1_middlename.send_keys("Петрович")
-        ins1_eng_surname=driver.find_element_by_css_selector("div[name=\"Insurer_1\"] input[name=\"surName\"]")
+        ins1_eng_surname = driver.find_element_by_css_selector("div[name=\"Insurer_1\"] input[name=\"surName\"]")
         ins1_eng_surname.click()
         ins1_eng_surname.send_keys("PETROV")
         ins1_eng_surname = driver.find_element_by_css_selector("div[name=\"Insurer_1\"] input[name=\"givenNames\"]")
@@ -115,7 +115,7 @@ class Voyage:
         male.click()
         time.sleep(1)
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, ("div.sectionInsurersButton>button"))))
-        continue_button=driver.find_element_by_css_selector(("div.sectionInsurersButton>button"))
+        continue_button = driver.find_element_by_css_selector(("div.sectionInsurersButton>button"))
         continue_button.click()
 
     def insurer_info(self):

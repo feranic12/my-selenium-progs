@@ -12,7 +12,6 @@ from utils import get_begin_day
 from configs import chromedriver_path
 
 class SteerYourHealthPlus:
-    driver=None
     def __init__(self):
         self.driver=webdriver.Chrome(executable_path=chromedriver_path)
         self.actions=action_chains.ActionChains(self.driver)

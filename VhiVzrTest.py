@@ -11,15 +11,18 @@ import time
 from configs import chromedriver_path
 from utils import get_begin_day
 import pyperclip
+
+
 class VhiVzr():
-    driver = None
+
     def __init__(self):
         self.driver = webdriver.Chrome(executable_path=chromedriver_path)
         self.driver.get("https://testpartner.vtbins.ru/b2c/vhi/test-main.html")
         self.driver.switch_to.frame(0)
         self.fill_frame()
+
     def fill_frame(self):
-        driver=self.driver
+        driver = self.driver
 
         first_number=driver.find_element_by_name("policyNumber1")
         first_number.send_keys("01050100")
@@ -61,29 +64,30 @@ class VhiVzr():
         buy_button = driver.find_element_by_css_selector("div#product-variant-2 div.btn-primary")
         buy_button.click()
 
-        begin_date=driver.find_element_by_id("beginDate")
+        begin_date = driver.find_element_by_id("beginDate")
         begin_date.send_keys(get_begin_day(6)+Keys.ENTER)
 
-        surname=driver.find_element_by_name("Surname")
+        surname = driver.find_element_by_name("Surname")
         surname.send_keys("Malinin")
 
-        given_name=driver.find_element_by_name("Given names")
+        given_name = driver.find_element_by_name("Given names")
         given_name.send_keys("Vjacheslav")
 
-        passport=driver.find_element_by_id("passport")
+        passport = driver.find_element_by_id("passport")
         passport.send_keys("12 123456")
 
-        phone=driver.find_element_by_name("phone")
+        phone = driver.find_element_by_name("phone")
         phone.send_keys("7777777777")
 
-        email1=driver.find_element_by_name("email1")
+        email1 = driver.find_element_by_name("email1")
         email1.send_keys("knikitin@avinfors.ru")
 
-        email2=driver.find_element_by_name("email2")
+        email2 = driver.find_element_by_name("email2")
         email2.send_keys("knikitin@avinfors.ru")
 
-        agree=driver.find_element_by_name("agree")
+        agree = driver.find_element_by_name("agree")
         agree.click()
 
-vhi_vzr=VhiVzr()
+
+vhi_vzr = VhiVzr()
 

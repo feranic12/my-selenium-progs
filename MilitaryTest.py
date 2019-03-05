@@ -10,7 +10,6 @@ import time
 from configs import chromedriver_path
 
 class Military():
-    driver = None
     def __init__(self):
         self.driver = webdriver.Chrome(executable_path=chromedriver_path)
         self.driver.get("https://testpartner.vtbins.ru/b2c/military/test-main.html")

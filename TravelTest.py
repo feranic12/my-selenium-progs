@@ -8,6 +8,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from utils import get_begin_day
 from configs import chromedriver_path
+
+
 class Travel():
     def __init__(self):
         self.driver = webdriver.Chrome(executable_path=chromedriver_path)
@@ -44,6 +46,7 @@ class Travel():
         begin_date.send_keys(get_begin_day(days))
 
     def insurer_info(self):
+        driver=self.driver
         last_name = driver.find_element_by_name("lastName")
         last_name.send_keys("Петров")
         first_name = driver.find_element_by_name("firstName")
@@ -70,5 +73,6 @@ class Travel():
         self.first_page()
         self.begin_date(6)
         self.insurer_info()
+
 
 travel=Travel()
