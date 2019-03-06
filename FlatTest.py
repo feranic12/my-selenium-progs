@@ -5,12 +5,13 @@ from FlatFixture import FlatFixture
 
 @pytest.fixture
 def fix():
-    fixture=FlatFixture()
+    fixture = FlatFixture()
     return fixture
 
 
 def test_flat(fix):
     fix.fill_frame()
+    input()
 
 
 

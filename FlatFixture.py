@@ -17,7 +17,6 @@ class FlatFixture:
         self.driver = webdriver.Chrome(executable_path=chromedriver_path)
         self.driver.get("https://testpartner.vtbins.ru/b2c/flat/test-main.html")
         self.driver.switch_to.frame("RESOLUTE_INSURANCE")
-        self.fill_frame()
 
     def first_page(self):
         driver = self.driver

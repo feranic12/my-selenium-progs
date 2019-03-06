@@ -17,7 +17,6 @@ class MilitaryFixture:
         self.driver = webdriver.Chrome(executable_path=chromedriver_path)
         self.driver.get("https://testpartner.vtbins.ru/b2c/military/test-main.html")
         self.driver.switch_to.frame(0)
-        self.fill_frame()
 
     def choose_place(self):
         driver = self.driver

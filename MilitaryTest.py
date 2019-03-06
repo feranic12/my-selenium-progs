@@ -10,3 +10,4 @@ def fix():
 
 def test_military(fix):
     fix.fill_frame()
+    input()

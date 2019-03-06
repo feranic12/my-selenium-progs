@@ -10,12 +10,13 @@ from selenium.webdriver.common import action_chains
 import time
 from utils import get_begin_day
 from configs import chromedriver_path
-class MultipolicyB2C():
+
+
+class MultipolicyFixture:
     def __init__(self):
         self.driver=webdriver.Chrome(executable_path=chromedriver_path)
         self.driver.get("https://testpartner.vtbins.ru/b2c/multipolicy/test-main.html")
         self.driver.switch_to.frame(0)
-        self.fill_frame()
 
     def policy_info(self):
         driver=self.driver
@@ -50,5 +51,3 @@ class MultipolicyB2C():
     def fill_frame(self):
         self.policy_info()
         self.insurer()
-
-multipolicy_b2c=MultipolicyB2C()
