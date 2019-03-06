@@ -1,5 +1,5 @@
 import pytest
-from MilitaryFixture import MilitaryFixture
+from Fixtures.MilitaryFixture import MilitaryFixture
 
 
 @pytest.fixture

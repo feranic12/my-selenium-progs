@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pytest
-from FlatFixture import FlatFixture
+from Fixtures.FlatFixture import FlatFixture
 
 
 @pytest.fixture

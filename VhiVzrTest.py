@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pytest
-from VhiVzrFixture import VhiVzrFixture
+from Fixtures.VhiVzrFixture import VhiVzrFixture
 
 
 @pytest.fixture

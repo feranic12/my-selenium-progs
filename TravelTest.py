@@ -1,5 +1,5 @@
 import pytest
-from TravelFixture import TravelFixture
+from Fixtures.TravelFixture import TravelFixture
 
 
 @pytest.fixture

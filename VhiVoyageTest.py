@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pytest
-from VhiVoyageFixture import VhiVoyageFixture
+from Fixtures.VhiVoyageFixture import VhiVoyageFixture
 
 
 @pytest.fixture

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pytest
-from VoyageFixture import VoyageFixture
+from Fixtures.VoyageFixture import VoyageFixture
 
 
 @pytest.fixture

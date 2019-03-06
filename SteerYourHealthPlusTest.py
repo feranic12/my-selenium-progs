@@ -1,5 +1,5 @@
 import pytest
-from SteerYourHealthPlusFixture import SteerYourHealthPlusFixture
+from Fixtures.SteerYourHealthPlusFixture import SteerYourHealthPlusFixture
 
 
 @pytest.fixture

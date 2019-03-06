@@ -1,5 +1,5 @@
 import pytest
-from MultipolicyFixture import MultipolicyFixture
+from Fixtures.MultipolicyFixture import MultipolicyFixture
 
 
 @pytest.fixture
