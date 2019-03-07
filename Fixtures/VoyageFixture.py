@@ -136,12 +136,12 @@ class VoyageFixture:
         agree = driver.find_element_by_css_selector("label.checkbox.final>span.checkbox-icon")
         agree.click()
 
-    def fill_frame(self):
+    def fill_frame(self,days):
         self.insured_birthdates()
         self.trip_type()
         self.country_select()
         self.conditions()
-        self.trip_dates(6)
+        self.trip_dates(days)
         self.buy()
         self.continue_without()
         self.insured_info()
