@@ -68,7 +68,7 @@ class TravelFixture:
         email2 = driver.find_element_by_name("email2")
         email2.send_keys("knikitin@avinfors.ru")
 
-    def fill_frame(self):
+    def fill_frame(self,days):
         self.first_page()
-        self.begin_date(6)
+        self.begin_date(days)
         self.insurer_info()

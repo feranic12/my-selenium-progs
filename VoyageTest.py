@@ -2,20 +2,14 @@
 import pytest
 from Fixtures.VoyageFixture import VoyageFixture
 
-
-def pytest_addoption(parser):
-    parser.addoption("--cmdopt",action="store",default=6,type=int)
-
-
 @pytest.fixture
 def fix():
     fixture = VoyageFixture()
     return fixture
 
-
 @pytest.fixture
 def cmdopt(request):
-    return request.config.getoption("--cmdopt")
+    return request.config.getoption("--days")
 
 
 def test_voyage(fix, cmdopt):

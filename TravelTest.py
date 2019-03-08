@@ -8,6 +8,11 @@ def fix():
     return fixture
 
 
-def test_travel(fix):
-    fix.fill_frame()
+@pytest.fixture
+def cmdopt(request):
+    return request.config.getoption("--days")
+
+
+def test_travel(fix,cmdopt):
+    fix.fill_frame(cmdopt)
     input()
