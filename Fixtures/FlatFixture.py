@@ -13,10 +13,14 @@ from configs import chromedriver_path
 
 class FlatFixture:
 
+
     def __init__(self):
         self.driver = webdriver.Chrome(executable_path=chromedriver_path)
         self.driver.get("https://testpartner.vtbins.ru/b2c/flat/test-main.html")
         self.driver.switch_to.frame("RESOLUTE_INSURANCE")
+
+    def is_frame_filled(self):
+        return (self.driver.find_element_by_css_selector("img[src *=\"3B2441ED-482F-10E1-0E2D-1E6C86FD91F6.png\"]"))
 
     def first_page(self):
         driver = self.driver

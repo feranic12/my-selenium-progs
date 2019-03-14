@@ -11,6 +11,7 @@ def fix():
 
 def test_flat(fix):
     fix.fill_frame()
+    assert fix.is_frame_filled()
     input()
 
 
