@@ -2,16 +2,14 @@
 import pytest
 from Fixtures.VoyageFixture import VoyageFixture
 
+
 @pytest.fixture
-def fix():
-    fixture = VoyageFixture()
+def fix(request):
+    cmdopt = request.config.getoption("--days")
+    fixture = VoyageFixture(cmdopt)
     return fixture
 
-@pytest.fixture
-def cmdopt(request):
-    return request.config.getoption("--days")
 
-
-def test_voyage(fix, cmdopt):
-    fix.fill_frame(cmdopt)
+def test_voyage(fix):
+    fix.fill_frame()
     input()

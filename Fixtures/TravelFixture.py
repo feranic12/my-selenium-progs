@@ -11,7 +11,8 @@ from configs import chromedriver_path
 
 
 class TravelFixture:
-    def __init__(self):
+    def __init__(self, cmdopt):
+        self.days = cmdopt
         self.driver = webdriver.Chrome(executable_path=chromedriver_path)
         self.driver.get("https://testpartner.vtbins.ru/b2c/travel/test-main.html")
         self.driver.switch_to.frame(0)
@@ -68,7 +69,7 @@ class TravelFixture:
         email2 = driver.find_element_by_name("email2")
         email2.send_keys("knikitin@avinfors.ru")
 
-    def fill_frame(self,days):
+    def fill_frame(self):
         self.first_page()
-        self.begin_date(days)
+        self.begin_date(self.days)
         self.insurer_info()

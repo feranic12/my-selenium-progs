@@ -15,7 +15,8 @@ from configs import chromedriver_path
 
 class VoyageFixture:
 
-    def __init__(self):
+    def __init__(self,cmdopt):
+        self.days = cmdopt
         self.driver = webdriver.Chrome(executable_path=chromedriver_path)
         self.driver.get("https://testpartner.vtbins.ru/b2c/voyage/test-main.html")
         self.driver.switch_to.frame("RESOLUTE_INSURANCE")
@@ -136,12 +137,12 @@ class VoyageFixture:
         agree = driver.find_element_by_css_selector("label.checkbox.final>span.checkbox-icon")
         agree.click()
 
-    def fill_frame(self,days):
+    def fill_frame(self):
         self.insured_birthdates()
         self.trip_type()
         self.country_select()
         self.conditions()
-        self.trip_dates(days)
+        self.trip_dates(self.days)
         self.buy()
         self.continue_without()
         self.insured_info()
