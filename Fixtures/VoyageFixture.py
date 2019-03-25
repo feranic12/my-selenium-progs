@@ -15,12 +15,12 @@ from configs import chromedriver_path
 
 class VoyageFixture:
 
-    def __init__(self,cmdopt):
-        self.days = cmdopt
+    def __init__(self, cmd_days):
+        self.days = cmd_days
         self.driver = webdriver.Chrome(executable_path=chromedriver_path)
         self.driver.get("https://testpartner.vtbins.ru/b2c/voyage/test-main.html")
         self.driver.switch_to.frame("RESOLUTE_INSURANCE")
-        self.action=webdriver.common.action_chains.ActionChains(self.driver)
+        self.action = webdriver.common.action_chains.ActionChains(self.driver)
 
     def insured_birthdates(self):
         driver = self.driver

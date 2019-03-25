@@ -11,8 +11,8 @@ from configs import chromedriver_path
 
 
 class TravelFixture:
-    def __init__(self, cmdopt):
-        self.days = cmdopt
+    def __init__(self, cmd_days):
+        self.days = cmd_days
         self.driver = webdriver.Chrome(executable_path=chromedriver_path)
         self.driver.get("https://testpartner.vtbins.ru/b2c/travel/test-main.html")
         self.driver.switch_to.frame(0)

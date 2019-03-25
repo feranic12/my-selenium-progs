@@ -4,8 +4,9 @@ from Fixtures.FlatFixture import FlatFixture
 
 
 @pytest.fixture
-def fix():
-    fixture = FlatFixture()
+def fix(request):
+    browser=request.config.getoption("--browser")
+    fixture = FlatFixture(browser)
     return fixture
 
 

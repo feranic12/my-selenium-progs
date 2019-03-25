@@ -4,8 +4,8 @@ from Fixtures.TravelFixture import TravelFixture
 
 @pytest.fixture
 def fix(request):
-    cmdopt = request.config.getoption("--days")
-    fixture = TravelFixture(cmdopt)
+    cmd_days = request.config.getoption("--days")
+    fixture = TravelFixture(cmd_days)
     return fixture
 
 
