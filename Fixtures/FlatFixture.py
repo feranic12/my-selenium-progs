@@ -8,18 +8,19 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common import action_chains
 import time
 from utils import get_begin_day
-from configs import chromedriver_path,geckodriver_path
+from configs import chromedriver_path,geckodriver_path,firefox_binary_path
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 class FlatFixture:
 
     def __init__(self,browser):
+
         if browser == "chrome":
             self.driver = webdriver.Chrome(executable_path = chromedriver_path)
         elif browser == "firefox":
-            cap = DesiredCapabilities().FIREFOX
-            cap["marionette"] = True
-            self.driver = webdriver.Firefox(executable_path = geckodriver_path)
+            caps = DesiredCapabilities().FIREFOX
+            caps["marionette"]=True
+            self.driver = webdriver.Firefox(firefox_binary=firefox_binary_path, executable_path=geckodriver_path)
 
         self.driver.get("https://testpartner.vtbins.ru/b2c/flat/test-main.html")
         self.driver.switch_to.frame("RESOLUTE_INSURANCE")
