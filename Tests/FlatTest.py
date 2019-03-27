@@ -5,8 +5,9 @@ from Fixtures.FlatFixture import FlatFixture
 
 @pytest.fixture
 def fix(request):
-    browser=request.config.getoption("--browser")
-    fixture = FlatFixture(browser)
+    browser = request.config.getoption("--browser")
+    target = r"https://testpartner.vtbins.ru/b2c/flat/test-main.html"
+    fixture = FlatFixture(browser, target)
     return fixture
 
 
