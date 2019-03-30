@@ -17,6 +17,7 @@ def fix(request):
 
 
 def test_flat(fix):
+    fix.open_page()
     fix.fill_frame()
     assert fix.is_frame_filled()
     input()

@@ -8,17 +8,16 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common import action_chains
 import time
 from utils import get_begin_day
-from config import chromedriver_path,geckodriver_path,firefox_binary_path
 
-class FlatFixture:
+from Fixtures.BaseFixture import BaseFixture
 
-    def __init__(self, browser, target):
-        if browser == "chrome":
-            self.driver = webdriver.Chrome(executable_path = chromedriver_path)
-        elif browser == "firefox":
-            self.driver = webdriver.Firefox(firefox_binary = firefox_binary_path, executable_path = geckodriver_path)
+class FlatFixture(BaseFixture):
 
-        self.driver.get(target)
+    def __init__(self,browser,target):
+        BaseFixture.__init__(self, browser, target)
+
+    def open_page(self):
+        self.driver.get(self.target)
         self.driver.switch_to.frame("RESOLUTE_INSURANCE")
 
     def is_frame_filled(self):
