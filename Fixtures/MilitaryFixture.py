@@ -8,14 +8,18 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common import action_chains
 import time
 from utils import get_begin_day
-from configs import chromedriver_path
+from config import chromedriver_path
+from Fixtures.BaseFixture import BaseFixture
 
 
 class MilitaryFixture:
 
-    def __init__(self):
-        self.driver = webdriver.Chrome(executable_path=chromedriver_path)
-        self.driver.get("https://testpartner.vtbins.ru/b2c/military/test-main.html")
+    def __init__(self, browser):
+        target = r"https://testpartner.vtbins.ru/b2c/military/test-main.html"
+        BaseFixture.__init__(self,browser,target)
+
+    def open_page(self):
+        self.driver.get(self.target)
         self.driver.switch_to.frame(0)
 
     def choose_place(self):

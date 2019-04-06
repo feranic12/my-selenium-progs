@@ -10,16 +10,21 @@ from selenium.webdriver.common.by import By
 from datetime import datetime,timedelta
 import time
 from utils import get_begin_day
-from configs import chromedriver_path
+from config import chromedriver_path
+from Fixtures.BaseFixture import BaseFixture
 
 
 class VoyageFixture:
 
-    def __init__(self, cmd_days):
+    def __init__(self, browser, cmd_days):
         self.days = cmd_days
-        self.driver = webdriver.Chrome(executable_path=chromedriver_path)
-        self.driver.get("https://testpartner.vtbins.ru/b2c/voyage/test-main.html")
-        self.driver.switch_to.frame("RESOLUTE_INSURANCE")
+        target = r"https://testpartner.vtbins.ru/b2c/voyage/test-main.html"
+        BaseFixture.__init__(self, browser, target)
+
+    def open_page(self):
+        driver = self.driver
+        driver.get("https://testpartner.vtbins.ru/b2c/voyage/test-main.html")
+        driver.switch_to.frame("RESOLUTE_INSURANCE")
         self.action = webdriver.common.action_chains.ActionChains(self.driver)
 
     def insured_birthdates(self):

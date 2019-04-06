@@ -9,14 +9,20 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common import action_chains
 import time
 from utils import get_begin_day
-from configs import chromedriver_path
+from config import chromedriver_path
+from Fixtures.BaseFixture import BaseFixture
 
 
 class MultipolicyFixture:
-    def __init__(self):
-        self.driver=webdriver.Chrome(executable_path=chromedriver_path)
-        self.driver.get("https://testpartner.vtbins.ru/b2c/multipolicy/test-main.html")
-        self.driver.switch_to.frame(0)
+
+    def __init__(self, browser):
+        target = r"https://testpartner.vtbins.ru/b2c/multipolicy/test-main.html"
+        BaseFixture.__init__(self, browser, target)
+
+    def open_page(self):
+        driver = self.driver
+        driver.get(self.target)
+        driver.switch_to.frame(0)
 
     def policy_info(self):
         driver=self.driver

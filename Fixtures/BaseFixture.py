@@ -1,7 +1,9 @@
 from config import chromedriver_path, geckodriver_path, firefox_binary_path
 from selenium import webdriver
 
+
 class BaseFixture:
+
     def __init__(self, browser, target):
         self.chromedriver_path = chromedriver_path
         self.geckodriver_path = geckodriver_path

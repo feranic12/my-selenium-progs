@@ -4,11 +4,13 @@ from Fixtures.VhiVoyageFixture import VhiVoyageFixture
 
 
 @pytest.fixture
-def fix():
-    fixture = VhiVoyageFixture()
+def fix(request):
+    browser = request.config.getoption("--browser")
+    fixture = VhiVoyageFixture(browser)
     return fixture
 
 
 def test_vhivoyage(fix):
+    fix.open_page()
     fix.fill_frame()
     input()

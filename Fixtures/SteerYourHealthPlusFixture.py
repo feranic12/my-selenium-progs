@@ -9,15 +9,21 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common import action_chains
 import time, pyperclip
 from utils import get_begin_day
-from configs import chromedriver_path
+from config import chromedriver_path
+from Fixtures.BaseFixture import BaseFixture
 
 
 class SteerYourHealthPlusFixture:
-    def __init__(self):
-        self.driver=webdriver.Chrome(executable_path=chromedriver_path)
-        self.actions=action_chains.ActionChains(self.driver)
-        self.driver.get("https://testpartner.vtbins.ru/b2c/steerYourHealthPlus/test-main.html")
-        self.driver.switch_to.frame("RESOLUTE_INSURANCE")
+
+    def __init__(self, browser):
+        target = r"https://testpartner.vtbins.ru/b2c/steerYourHealthPlus/test-main.html"
+        BaseFixture.__init__(self, browser, target)
+        self.actions = action_chains.ActionChains(self.driver)
+
+    def open_page(self):
+        driver = self.driver
+        driver.get(self.target)
+        driver.switch_to.frame("RESOLUTE_INSURANCE")
 
     def fill_frame(self):
         driver=self.driver

@@ -7,18 +7,24 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from utils import get_begin_day
-from configs import chromedriver_path
+from config import chromedriver_path
+from Fixtures.BaseFixture import BaseFixture
 
 
 class TravelFixture:
-    def __init__(self, cmd_days):
+
+    def __init__(self, browser, cmd_days):
         self.days = cmd_days
-        self.driver = webdriver.Chrome(executable_path=chromedriver_path)
-        self.driver.get("https://testpartner.vtbins.ru/b2c/travel/test-main.html")
-        self.driver.switch_to.frame(0)
+        target = r"https://testpartner.vtbins.ru/b2c/travel/test-main.html"
+        BaseFixture.__init__(self, browser, target)
+
+    def open_page(self):
+        driver = self.driver
+        driver.get(self.target)
+        driver.switch_to.frame(0)
 
     def first_page(self):
-        driver=self.driver
+        driver = self.driver
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "div[value*=\"Однократная\"]")))
         single = driver.find_element_by_css_selector("div[value*=\"Однократная\"]")
         single.click()
