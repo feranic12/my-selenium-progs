@@ -8,8 +8,8 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common import action_chains
 import time
 from utils import get_begin_day
-
 from Fixtures.BaseFixture import BaseFixture
+
 
 class FlatFixture(BaseFixture):
 

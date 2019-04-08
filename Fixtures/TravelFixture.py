@@ -46,8 +46,8 @@ class TravelFixture:
         buy_button = driver.find_element_by_css_selector("div[code=\"econom\"]")
         driver.execute_script("arguments[0].click()", buy_button)
 
-    def begin_date(self,days):
-        driver=self.driver
+    def begin_date(self, days):
+        driver = self.driver
         begin_date = driver.find_element_by_id("beginDate")
         begin_date.send_keys(get_begin_day(days))
 
