@@ -24,8 +24,9 @@ class AccidenteFixture(BaseFixture):
 
     def fill_frame(self):
         driver = self.driver
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "div[value *= \"3 месяца\"]")))
-        term_3 = driver.find_element_by_css_selector("div[value *= \"3 месяца\"]")
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'div[value *= "3 месяца"]')))
+        term_3 = driver.find_element_by_css_selector('div[value *= "3 месяца"]')
         term_3.click()
-        sport = driver.find_element_by_css_selector('div[value = "{\"code\":\"3\",\"name\":\"Да\"}"]')
-        sport.click()
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "div.btn.btn-combobox[value=\"{\"code\":\"3\",\"name\":\"Да\"}\"]")))
+        sport = driver.find_element_by_css_selector("div.btn.btn-combobox[value=\"{\"code\":\"3\",\"name\":\"Да\"}\"]")
+        
