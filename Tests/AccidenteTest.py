@@ -3,7 +3,7 @@ from Fixtures.AccidenteFixture import AccidenteFixture
 
 @pytest.fixture
 def fix(request):
-    browser=request.config.getoption("--browser")
+    browser = request.config.getoption("--browser")
     fixture = AccidenteFixture(browser)
     return fixture
 
