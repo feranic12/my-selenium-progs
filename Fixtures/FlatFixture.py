@@ -17,9 +17,8 @@ class FlatFixture(BaseFixture):
         BaseFixture.__init__(self, browser, target)
 
     def open_page(self):
-        driver = self.driver
-        driver.get(self.target)
-        driver.switch_to.frame("RESOLUTE_INSURANCE")
+        BaseFixture.open_page(self)
+        self.driver.switch_to.frame("RESOLUTE_INSURANCE")
 
     def is_frame_filled(self):
         return (self.driver.find_element_by_css_selector("img[src *=\"3B2441ED-482F-10E1-0E2D-1E6C86FD91F6.png\"]"))

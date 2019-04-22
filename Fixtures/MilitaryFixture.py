@@ -19,7 +19,7 @@ class MilitaryFixture:
         BaseFixture.__init__(self,browser,target)
 
     def open_page(self):
-        self.driver.get(self.target)
+        BaseFixture.open_page(self)
         self.driver.switch_to.frame(0)
 
     def choose_place(self):

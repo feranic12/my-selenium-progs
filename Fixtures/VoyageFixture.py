@@ -22,9 +22,8 @@ class VoyageFixture:
         BaseFixture.__init__(self, browser, target)
 
     def open_page(self):
-        driver = self.driver
-        driver.get("https://testpartner.vtbins.ru/b2c/voyage/test-main.html")
-        driver.switch_to.frame("RESOLUTE_INSURANCE")
+        BaseFixture.open_page(self)
+        self.driver.switch_to.frame("RESOLUTE_INSURANCE")
         self.action = webdriver.common.action_chains.ActionChains(self.driver)
 
     def insured_birthdates(self):

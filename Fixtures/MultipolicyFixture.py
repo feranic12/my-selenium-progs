@@ -20,9 +20,8 @@ class MultipolicyFixture:
         BaseFixture.__init__(self, browser, target)
 
     def open_page(self):
-        driver = self.driver
-        driver.get(self.target)
-        driver.switch_to.frame(0)
+        BaseFixture.open_page(self)
+        self.driver.switch_to.frame(0)
 
     def policy_info(self):
         driver=self.driver

@@ -21,9 +21,8 @@ class SteerYourHealthPlusFixture:
         self.actions = action_chains.ActionChains(self.driver)
 
     def open_page(self):
-        driver = self.driver
-        driver.get(self.target)
-        driver.switch_to.frame("RESOLUTE_INSURANCE")
+        BaseFixture.open_page(self)
+        self.driver.switch_to.frame("RESOLUTE_INSURANCE")
 
     def fill_frame(self):
         driver=self.driver
