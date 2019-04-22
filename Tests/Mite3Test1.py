@@ -12,5 +12,5 @@ def fix(request):
 
 def test1_mite3(fix):
     fix.open_page()
-    #fix.fill_frame()
+    fix.fill_frame()
     input()
