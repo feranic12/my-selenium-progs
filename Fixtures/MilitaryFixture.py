@@ -114,7 +114,7 @@ class MilitaryFixture:
 
     def agree(self):
         driver = self.driver
-        time.sleep(2)
+        time.sleep(1)
         agree1 = driver.find_element_by_id("checkbox1")
         agree1.click()
         agree2 = driver.find_element_by_id("checkbox2")

@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 import pytest
-from Fixtures.Mite3Fixture1 import Mite3Fixture1
+from Fixtures.Mite3Fixture import Mite3Fixture
 
 
 @pytest.fixture
 def fix(request):
     browser = request.config.getoption("--browser")
-    fixture = Mite3Fixture1(browser)
+    mitetype = request.config.getoption("--mitetype")
+    fixture = Mite3Fixture(browser, mitetype)
     return fixture
 
 

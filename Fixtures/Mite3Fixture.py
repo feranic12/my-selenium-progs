@@ -9,12 +9,12 @@ from selenium.webdriver.common import action_chains
 import time
 from utils import get_begin_day
 from Fixtures.BaseFixture import BaseFixture
-import pyperclip
 
-class Mite3Fixture1(BaseFixture):
+class Mite3Fixture(BaseFixture):
 
-    def __init__(self, browser):
+    def __init__(self, browser, mitetype):
         target = r"https://testpartner.vtbins.ru/b2c/mite3/test-main.html"
+        self.type = mitetype
         BaseFixture.__init__(self, browser, target)
 
     def open_page(self):
@@ -28,8 +28,12 @@ class Mite3Fixture1(BaseFixture):
         insured1_dob.send_keys("11011990")
         _3months = driver.find_element_by_css_selector("button[data-code=\"3\"]")
         _3months.click()
-        organization = driver.find_element_by_id("btn-med")
-        organization.click()
+        if self.type == "1":
+            organization = driver.find_element_by_id("btn-med")
+            organization.click()
+        elif self.type == "2":
+            compensation = driver.find_element_by_id('btn-comp')
+            compensation.click()
         button_next = driver.find_element_by_css_selector("div#calculation button.btn-next")
         button_next.click()
 
@@ -43,7 +47,7 @@ class Mite3Fixture1(BaseFixture):
         middle_name.send_keys("Иванович")
         button_no = driver.find_element_by_css_selector("button[data-code=\"2\"]")
         button_no.click()
-        phone = driver.find_element_by_name("phone")
+        phone = driver.find_element_by_css_selector("div#insuredPersons input[name=\"phone\"]")
         phone.click()
         phone.send_keys("1231231212")
         button_next = driver.find_element_by_css_selector("div#insuredPersons button.btn-next")
@@ -71,8 +75,30 @@ class Mite3Fixture1(BaseFixture):
         flat = driver.find_element_by_id("flat")
         flat.send_keys("4")
         dob = driver.find_element_by_css_selector("div#client input[name=\"dob\"]")
+        dob.click()
+        dob.send_keys("01011980")
+        phone = driver.find_element_by_css_selector("div#client input[name=\"phone\"]")
+        phone.click()
+        phone.send_keys("1231231212")
+        email = driver.find_element_by_name("email")
+        email.send_keys("knikitin@avinfors.ru")
+        email1 = driver.find_element_by_name("email1")
+        email1.send_keys("knikitin@avinfors.ru")
+        begin_date = driver.find_element_by_name("beginDate")
+        begin_date.click()
+        begin_date.send_keys(get_begin_day(10))
+        button_next = driver.find_element_by_css_selector("div#client button.btn-next")
+        button_next.click()
+
+    def agree(self):
+        driver = self.driver
+        time.sleep(1)
+        #WebDriverWait(driver,10).until(EC.presence_of_element_located((By.ID, "agree")))
+        agree = driver.find_element_by_id("agree")
+        agree.click()
 
     def fill_frame(self):
         self.conditions()
         self.insured1_info()
         self.insurer_info()
+        self.agree()
