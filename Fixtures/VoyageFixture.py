@@ -14,7 +14,7 @@ from config import chromedriver_path
 from Fixtures.BaseFixture import BaseFixture
 
 
-class VoyageFixture:
+class VoyageFixture(BaseFixture):
 
     def __init__(self, browser, cmd_days):
         self.days = cmd_days

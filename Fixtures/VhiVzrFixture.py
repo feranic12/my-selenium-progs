@@ -14,7 +14,7 @@ import pyperclip
 from Fixtures.BaseFixture import BaseFixture
 
 
-class VhiVzrFixture():
+class VhiVzrFixture(BaseFixture):
 
     def __init__(self):
         target = r"https://testpartner.vtbins.ru/b2c/vhi/test-main.html"

@@ -9,11 +9,10 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common import action_chains
 import time
 from utils import get_begin_day
-from config import chromedriver_path
 from Fixtures.BaseFixture import BaseFixture
 
 
-class MultipolicyFixture:
+class MultipolicyFixture(BaseFixture):
 
     def __init__(self, browser):
         target = r"https://testpartner.vtbins.ru/b2c/multipolicy/test-main.html"

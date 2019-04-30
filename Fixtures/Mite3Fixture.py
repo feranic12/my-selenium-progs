@@ -10,6 +10,7 @@ import time
 from utils import get_begin_day
 from Fixtures.BaseFixture import BaseFixture
 
+
 class Mite3Fixture(BaseFixture):
 
     def __init__(self, browser, mitetype):

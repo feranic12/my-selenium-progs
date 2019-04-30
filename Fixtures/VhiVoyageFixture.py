@@ -14,7 +14,7 @@ from utils import get_begin_day
 from Fixtures.BaseFixture import BaseFixture
 
 
-class VhiVoyageFixture():
+class VhiVoyageFixture(BaseFixture):
 
     def __init__(self, browser):
         target = r"https://testpartner.vtbins.ru/b2c/vhi/test-main.html"

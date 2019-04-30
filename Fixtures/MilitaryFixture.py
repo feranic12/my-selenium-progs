@@ -8,15 +8,14 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common import action_chains
 import time
 from utils import get_begin_day
-from config import chromedriver_path
 from Fixtures.BaseFixture import BaseFixture
 
 
-class MilitaryFixture:
+class MilitaryFixture(BaseFixture):
 
     def __init__(self, browser):
         target = r"https://testpartner.vtbins.ru/b2c/military/test-main.html"
-        BaseFixture.__init__(self,browser,target)
+        BaseFixture.__init__(self, browser, target)
 
     def open_page(self):
         BaseFixture.open_page(self)
