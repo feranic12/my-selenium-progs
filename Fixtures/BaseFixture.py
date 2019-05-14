@@ -17,3 +17,6 @@ class BaseFixture:
 
     def open_page(self):
         self.driver.get(self.target)
+
+    def destroy(self):
+        self.driver.quit()
