@@ -1,15 +1,15 @@
 import pytest
-from Fixtures.SteerYourHealthPlusFixture import SteerYourHealthPlusFixture
+from Fixtures.MilitaryFixture import MilitaryFixture
 
 
 @pytest.fixture
 def fix(request):
     browser = request.config.getoption("--browser")
-    fixture = SteerYourHealthPlusFixture(browser)
+    fixture = MilitaryFixture(browser)
     request.addfinalizer(fixture.destroy)
     return fixture
 
 
-def test_steeryourhealthplus(fix):
+def test_military(fix):
     fix.open_page()
     fix.fill_frame()

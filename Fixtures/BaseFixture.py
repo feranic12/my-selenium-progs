@@ -1,6 +1,13 @@
 from config import chromedriver_path, geckodriver_path, firefox_binary_path
 from selenium import webdriver
-
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.ui import WebDriverWait # available since 2.4.0
+from selenium.webdriver.support import expected_conditions as EC # available since 2.26.0
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
+import pyperclip
+import time
 
 class BaseFixture:
 
@@ -17,6 +24,14 @@ class BaseFixture:
 
     def open_page(self):
         self.driver.get(self.target)
+
+    def pay_online(self):
+        driver = self.driver
+        #WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.ID, "ccnumber")))
+        time.sleep(5)
+        ccnumber = driver.find_element_by_id("ccnumber")
+        ccnumber.click()
+        ccnumber.send_keys("4111111111111111")
 
     def destroy(self):
         self.driver.quit()

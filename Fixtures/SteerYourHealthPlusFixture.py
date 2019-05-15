@@ -101,8 +101,17 @@ class SteerYourHealthPlusFixture(BaseFixture):
         agree = driver.find_element_by_css_selector("div#checkboxBlock>div")
         agree.click()
 
+    def to_payment(self):
+        driver = self.driver
+        visa_pay = driver.find_element_by_css_selector("div[code=\"72b8fcfa-de93-4f5b-993f-75b54d4254b2\"]")
+        visa_pay.click()
+        pay_button = driver.find_element_by_css_selector("button[data-paybutton]")
+        pay_button.click()
+
     def fill_frame(self):
         self.conditions()
         self.insured_child()
         self.insurer_info()
         self.agree()
+        self.to_payment()
+        self.pay_online()
