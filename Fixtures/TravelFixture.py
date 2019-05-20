@@ -48,7 +48,7 @@ class TravelFixture(BaseFixture):
     def begin_date(self, days):
         driver = self.driver
         begin_date = driver.find_element_by_id("beginDate")
-        begin_date.send_keys(get_begin_day(days))
+        begin_date.send_keys(get_begin_day(days)+Keys.ENTER)
 
     def insurer_info(self):
         driver=self.driver
@@ -74,7 +74,13 @@ class TravelFixture(BaseFixture):
         email2 = driver.find_element_by_name("email2")
         email2.send_keys("knikitin@avinfors.ru")
 
+    def agree(self):
+        driver = self.driver
+        agree = driver.find_element_by_css_selector("div.chekBoxer[name=\"agree\"]")
+        agree.click()
+
     def fill_frame(self):
         self.first_page()
         self.begin_date(self.days)
         self.insurer_info()
+        self.agree()

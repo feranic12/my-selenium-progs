@@ -113,5 +113,5 @@ class SteerYourHealthPlusFixture(BaseFixture):
         self.insured_child()
         self.insurer_info()
         self.agree()
-        self.to_payment()
-        self.pay_online()
+        #self.to_payment()
+        #self.pay_online()
