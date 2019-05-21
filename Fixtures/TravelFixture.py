@@ -48,8 +48,8 @@ class TravelFixture(BaseFixture):
     def begin_date(self, days):
         driver = self.driver
         begin_date = driver.find_element_by_id("beginDate")
-        begin_date.send_keys(get_begin_day(days))
-        driver.find_element_by_tag_name("body").click()
+        begin_date.send_keys(get_begin_day(days)+Keys.ENTER)
+        #driver.find_element_by_tag_name("body").click()
 
     def insurer_info(self):
         driver=self.driver
