@@ -11,10 +11,9 @@ from utils import get_begin_day
 from Fixtures.BaseFixture import BaseFixture
 
 
-class SteerYourHealthPlusFixture(BaseFixture):
+class SteerYourHealthPlusAdultFixture(BaseFixture):
 
-    def __init__(self, browser):
-        target = r"https://testpartner.vtbins.ru/b2c/steerYourHealthPlus/test-main.html"
+    def __init__(self, browser, target):
         BaseFixture.__init__(self, browser, target)
 
     def open_page(self):
@@ -23,9 +22,9 @@ class SteerYourHealthPlusFixture(BaseFixture):
 
     def conditions(self):
         driver = self.driver
-        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "label[for=\"UZSIP1-17\"]")))
-        age17 = driver.find_element_by_css_selector("label[for=\"UZSIP1-17\"]")
-        age17.click()
+        WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "label[for=\"UZSIP18-50")))
+        age1850 = driver.find_element_by_css_selector("label[for=\"UZSIP18-50\"]")
+        age1850.click()
         # WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "div.btnBuy[btn-id=\"standart\"]")))
         time.sleep(4)
         standart = driver.find_element_by_css_selector("div.btnBuy[btn-id=\"standart\"]")
@@ -58,9 +57,10 @@ class SteerYourHealthPlusFixture(BaseFixture):
         button_next = driver.find_element_by_css_selector("button[data-next=\"step3\"]")
         button_next.click()
 
+
     def insurer_info(self):
         driver = self.driver
-        WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[field-id=\"insurerAdultSection_surname\"]")))
+        WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "input[field-id=\"insurerAdultSection_surname\"]")))
         last_name = driver.find_element_by_css_selector("input[field-id=\"insurerAdultSection_surname\"]")
         last_name.send_keys("Петров")
         first_name = driver.find_element_by_css_selector("input[field-id=\"insurerAdultSection_name\"]")
@@ -110,7 +110,6 @@ class SteerYourHealthPlusFixture(BaseFixture):
 
     def fill_frame(self):
         self.conditions()
-        self.insured_child()
         self.insurer_info()
         self.agree()
         #self.to_payment()
