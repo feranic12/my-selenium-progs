@@ -60,7 +60,8 @@ class SteerYourHealthPlusAdultFixture(BaseFixture):
 
     def insurer_info(self):
         driver = self.driver
-        WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, "input[field-id=\"insurerAdultSection_surname\"]")))
+        #WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[field-id=\"insurerAdultSection_surname\"]")))
+        time.sleep(5);
         last_name = driver.find_element_by_css_selector("input[field-id=\"insurerAdultSection_surname\"]")
         last_name.send_keys("Петров")
         first_name = driver.find_element_by_css_selector("input[field-id=\"insurerAdultSection_name\"]")

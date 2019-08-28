@@ -9,7 +9,7 @@ from selenium.webdriver.common import action_chains
 import time
 from utils import get_begin_day
 from Fixtures.BaseFixture import BaseFixture
-
+import Pages.page
 
 class AccidenteFixture(BaseFixture):
 
@@ -22,7 +22,6 @@ class AccidenteFixture(BaseFixture):
         self.driver.switch_to.frame(0)
 
     def first_page(self):
-        driver = self.driver
         driver = self.driver
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'div[value *= "3 месяца"]')))
         term_3 = driver.find_element_by_css_selector('div[value *= "3 месяца"]')
@@ -106,6 +105,18 @@ class AccidenteFixture(BaseFixture):
         agree = driver.find_element_by_name("agree")
         agree.click()
 
+    def go_to_pay(self):
+        driver=self.driver
+        visa = driver.find_element_by_css_selector("div[code=\"72b8fcfa-de93-4f5b-993f-75b54d4254b2\"]>img")
+        visa.click()
+        to_pay_button = driver.find_element_by_name("final")
+        to_pay_button.click()
+
+    def pay(self):
+        driver=self.driver
+        pay_online_page = Pages.page.PayOnlinePage(driver)
+        pay_online_page.fill()
+
     def fill_frame(self):
         self.first_page()
         self.begin_date(10)
@@ -113,3 +124,5 @@ class AccidenteFixture(BaseFixture):
         self.insurer()
         self.flat_address()
         self.agree()
+        #self.go_to_pay()
+        #self.pay()
