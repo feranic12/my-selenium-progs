@@ -19,7 +19,7 @@ class BaseFixture:
         if browser == "chrome":
             self.driver = webdriver.Chrome(executable_path=self.chromedriver_path)
         elif browser == "firefox":
-            self.driver = webdriver.Firefox(firefox_binary=self.firefox_binary_path, executable_path=self.geckodriver_path)
+            self.driver = webdriver.Firefox(executable_path=self.geckodriver_path)
 
     def open_page(self):
         self.driver.get(self.target)
