@@ -16,8 +16,8 @@ from Fixtures.BaseFixture import BaseFixture
 
 class VoyageFixture(BaseFixture):
 
-    def __init__(self, browser, cmd_days):
-        self.days = cmd_days
+    def __init__(self, browser, days):
+        self.days = days
         target = r"https://testpartner.vtbins.ru/b2c/voyage/test-main.html"
         BaseFixture.__init__(self, browser, target)
 

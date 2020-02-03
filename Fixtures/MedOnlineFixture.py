@@ -13,7 +13,7 @@ from Fixtures.BaseFixture import BaseFixture
 
 class MedOnlineFixture(BaseFixture):#программа МедОнлайн6
 
-    def __init__(self,browser):
+    def __init__(self, browser):
         target = "https://testpartner.vtbins.ru/b2c/sip/build/test-medOnlineSIP.html"
         BaseFixture.__init__(self, browser, target)
 
