@@ -48,8 +48,9 @@ class TravelFixture(BaseFixture):
     def begin_date(self, days):
         driver = self.driver
         begin_date = driver.find_element_by_id("beginDate")
+        begin_date.click()
         begin_date.send_keys(get_begin_day(days)+Keys.ENTER)
-        driver.find_element_by_tag_name("body").click()
+        #driver.find_element_by_tag_name("body").click()
 
     def insurer_info(self):
         driver=self.driver
@@ -69,7 +70,8 @@ class TravelFixture(BaseFixture):
         seria_number = driver.find_element_by_id("passport")
         seria_number.send_keys("12 123456")
         phone = driver.find_element_by_name("phone")
-        phone.send_keys("+7(234)123-12-12")
+        phone.click()
+        phone.send_keys("1231231212")
         email1 = driver.find_element_by_name("email1")
         email1.send_keys("knikitin@avinfors.ru")
         email2 = driver.find_element_by_name("email2")

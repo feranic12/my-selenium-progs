@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC # available sin
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
-from selenium.webdriver.common import action_chains
+from selenium.webdriver.common.action_chains import ActionChains
 import time
 from utils import get_begin_day
 from Fixtures.BaseFixture import BaseFixture
@@ -16,6 +16,7 @@ class MilitaryFixture(BaseFixture):
     def __init__(self, browser):
         target = r"https://testpartner.vtbins.ru/b2c/military/test-main.html"
         BaseFixture.__init__(self, browser, target)
+        self.action = ActionChains(self.driver)
 
     def open_page(self):
         BaseFixture.open_page(self)
@@ -67,6 +68,7 @@ class MilitaryFixture(BaseFixture):
         button_3.click()
 
     def insurer_info(self):
+        action = self.action
         driver = self.driver
         WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, "input[data-path=\"content.insuredPerson.lastName\"]")))
@@ -79,9 +81,7 @@ class MilitaryFixture(BaseFixture):
         dob = driver.find_element_by_css_selector("input[data-path=\"content.insuredPerson.dob\"]")
         dob.click()
         dob.send_keys("18021980")
-        body = driver.find_element_by_tag_name("body")
-        body.click()
-        time.sleep(2)
+        action.move_by_offset(200, 10).click().perform()
         male = driver.find_element_by_css_selector("button[value*=\"Мужской\"]")
         male.click()
         passport = driver.find_element_by_css_selector("input[data-type=\"passport\"]")
@@ -90,7 +90,7 @@ class MilitaryFixture(BaseFixture):
         doi = driver.find_element_by_css_selector("input[data-path=\"content.insuredPerson.passport.doi\"]")
         doi.click()
         doi.send_keys("18022014")
-        body.click()
+        action.move_by_offset(100, 10).click().perform()
         issued = driver.find_element_by_css_selector("input[data-path=\"content.insuredPerson.passport.issued\"]")
         issued.send_keys("ОВД")
         phone = driver.find_element_by_css_selector("input[data-path=\"content.insuredPerson.phone\"]")

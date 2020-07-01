@@ -60,6 +60,7 @@ class SteerYourHealthPlusAdultFixture(BaseFixture):
 
     def insurer_info(self):
         driver = self.driver
+        action = self.action
         #WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[field-id=\"insurerAdultSection_surname\"]")))
         time.sleep(5);
         last_name = driver.find_element_by_css_selector("input[field-id=\"insurerAdultSection_surname\"]")
@@ -71,9 +72,7 @@ class SteerYourHealthPlusAdultFixture(BaseFixture):
         dob = driver.find_element_by_css_selector("input[field-id=\"insurerAdultSection_birthdate\"]")
         dob.click()
         dob.send_keys("01011990"+Keys.ENTER)
-        body = driver.find_element_by_tag_name("body")
-        body.click()
-        time.sleep(1)
+        action.move_by_offset(200, 10).click().perform()
         male = driver.find_element_by_css_selector("button[field-id=\"insurerAdultSection_male\"]")
         male.click()
         passport = driver.find_element_by_css_selector("input[field-id=\"insurerAdultSection_passportNumber\"]")

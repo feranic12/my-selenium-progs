@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC # available sin
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.action_chains import ActionChains
 import time
 from utils import get_begin_day
 from Fixtures.BaseFixture import BaseFixture
@@ -15,6 +16,7 @@ class SteerYourHealthPlusChildFixture(BaseFixture):
 
     def __init__(self, browser, target):
         BaseFixture.__init__(self, browser, target)
+        self.action = ActionChains(self.driver)
 
     def open_page(self):
         BaseFixture.open_page(self)
@@ -32,6 +34,7 @@ class SteerYourHealthPlusChildFixture(BaseFixture):
 
     def insured_child(self):
         driver = self.driver
+        action = self.action
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[field-id=\"kidSection_surname\"]")))
         last_name = driver.find_element_by_css_selector("input[field-id=\"kidSection_surname\"]")
         last_name.send_keys("Петрова")
@@ -41,9 +44,8 @@ class SteerYourHealthPlusChildFixture(BaseFixture):
         middle_name.send_keys("Петровна")
         dob = driver.find_element_by_css_selector("input[field-id=\"kidSection_birthdate\"]")
         dob.click()
-        dob.send_keys("01012009"+Keys.ENTER)
-        body = driver.find_element_by_tag_name("body")
-        body.click()
+        dob.send_keys("01012009" + Keys.ENTER)
+        action.move_by_offset(200, 10).click().perform()
         female = driver.find_element_by_css_selector("button[field-id=\"kidSection_female\"]")
         female.click()
         certificate = driver.find_element_by_css_selector("input[field-id=\"kidSection_birthCertificate\"]")
@@ -52,6 +54,7 @@ class SteerYourHealthPlusChildFixture(BaseFixture):
         issue_date = driver.find_element_by_css_selector("input[field-id=\"kidSection_issueDate\"]")
         issue_date.click()
         issue_date.send_keys("01012012" + Keys.ENTER)
+        action.move_by_offset(100, 10).click().perform()
         issue_organ = driver.find_element_by_css_selector("input[field-id=\"kidSection_issueOrgan\"]")
         issue_organ.send_keys("ОВД")
         button_next = driver.find_element_by_css_selector("button[data-next=\"step3\"]")
@@ -59,6 +62,7 @@ class SteerYourHealthPlusChildFixture(BaseFixture):
 
     def insurer_info(self):
         driver = self.driver
+        action = self.action
         WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "input[field-id=\"insurerAdultSection_surname\"]")))
         last_name = driver.find_element_by_css_selector("input[field-id=\"insurerAdultSection_surname\"]")
         last_name.send_keys("Петров")
@@ -69,9 +73,7 @@ class SteerYourHealthPlusChildFixture(BaseFixture):
         dob = driver.find_element_by_css_selector("input[field-id=\"insurerAdultSection_birthdate\"]")
         dob.click()
         dob.send_keys("01011990"+Keys.ENTER)
-        body = driver.find_element_by_tag_name("body")
-        body.click()
-        time.sleep(1)
+        action.move_by_offset(100, 10).click().perform()
         male = driver.find_element_by_css_selector("button[field-id=\"insurerAdultSection_male\"]")
         male.click()
         passport = driver.find_element_by_css_selector("input[field-id=\"insurerAdultSection_passportNumber\"]")
@@ -80,6 +82,7 @@ class SteerYourHealthPlusChildFixture(BaseFixture):
         issue_date = driver.find_element_by_css_selector("input[field-id=\"insurerAdultSection_issueDate\"]")
         issue_date.click()
         issue_date.send_keys("01012012" + Keys.ENTER)
+        action.move_by_offset(-10, 20).click().perform()
         issue_organ = driver.find_element_by_css_selector("input[field-id=\"insurerAdultSection_issueOrgan\"]")
         issue_organ.send_keys("ОВД")
         phone = driver.find_element_by_css_selector("input[field-id=\"insurerAdultSection_mobile\"]")

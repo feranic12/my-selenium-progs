@@ -28,7 +28,8 @@ class VoyageFixture(BaseFixture):
 
     def insured_birthdates(self):
         driver = self.driver
-        self.body = driver.find_element_by_tag_name("body")
+        action = self.action
+        # self.body = driver.find_element_by_tag_name("body")
         WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, "div[_insured=\"1\"]>label:first-child")))
         insured1 = driver.find_element_by_css_selector("div[_insured=\"1\"]>label:first-child")
@@ -36,7 +37,8 @@ class VoyageFixture(BaseFixture):
         insured1_dob = driver.find_element_by_css_selector("div[_insured=\"1\"]>label:nth-child(2)>input")
         insured1_dob.click()
         insured1_dob.send_keys("10021990")
-        self.body.click()
+        action.move_by_offset(100,10).click().perform()
+        #self.body.click()
 
     def trip_type(self):
         driver = self.driver
@@ -69,14 +71,13 @@ class VoyageFixture(BaseFixture):
         begin_date = driver.find_element_by_name("departures")
         begin_date.click()
         begin_date.send_keys(get_begin_day(days) + Keys.ENTER)
-        self.body.click()
-        #action.move_by_offset(500,500).click().perform()
+        action.move_by_offset(100, 10).click().perform()
         WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.NAME, "arrivals")))
         end_date=driver.find_element_by_name("arrivals")
         end_date.click()
         end_date.send_keys(get_begin_day(20) + Keys.ENTER)
-        self.body.click()
-        #action.move_by_offset(500,500).click().perform()
+        #self.body.click()
+        action.move_by_offset(100, 10).click().perform()
         time.sleep(1)
 
     def buy(self):
